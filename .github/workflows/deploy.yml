@@ -16,9 +16,6 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,6 +36,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
+      - name: Create headers file
+        run: |
+          echo '/*' > ./dist/_headers
+          echo '  Cache-Control: no-cache, no-store, must-revalidate' >> ./dist/_headers
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
