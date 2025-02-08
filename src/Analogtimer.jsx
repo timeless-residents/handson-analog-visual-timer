@@ -90,9 +90,9 @@ const AnalogTimer = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-6 p-4">
+    <div className="flex flex-col items-center justify-center space-y-6 p-4 dark:bg-gray-900">
       {/* デジタル表示 */}
-      <div className="text-4xl font-bold font-mono bg-white px-6 py-2 rounded-lg shadow-md">
+      <div className="text-4xl font-bold font-mono bg-white dark:bg-gray-800 dark:text-white px-6 py-2 rounded-lg shadow-md">
         {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
       </div>
 
@@ -104,7 +104,7 @@ const AnalogTimer = () => {
             cx="100"
             cy="100"
             r="95"
-            fill="#f3f4f6"
+            className="fill-gray-100 dark:fill-gray-700"
             stroke="#374151"
             strokeWidth="2"
           />
@@ -114,13 +114,13 @@ const AnalogTimer = () => {
             cx="100"
             cy="100"
             r="95"
-            fill="#e5e7eb"
+            className="fill-gray-200 dark:fill-gray-600"
             strokeWidth="0"
           />
           {/* 時針の扇形（外側） */}
           <path
             d={createArc(65, 95, hoursDegrees)}
-            fill="#1f2937"
+            className="fill-gray-800 dark:fill-gray-200"
           />
 
           {/* 分針用の背景円 */}
@@ -128,13 +128,13 @@ const AnalogTimer = () => {
             cx="100"
             cy="100"
             r="65"
-            fill="#d1d5db"
+            className="fill-gray-300 dark:fill-gray-500"
             strokeWidth="0"
           />
           {/* 分針の扇形（中間） */}
           <path
             d={createArc(35, 65, minutesDegrees)}
-            fill="#4b5563"
+            className="fill-gray-600 dark:fill-gray-300"
           />
 
           {/* 秒針用の背景円 */}
@@ -142,13 +142,13 @@ const AnalogTimer = () => {
             cx="100"
             cy="100"
             r="35"
-            fill="#fee2e2"
+            className="fill-red-100 dark:fill-red-900"
             strokeWidth="0"
           />
           {/* 秒針の扇形（内側、中心まで） */}
           <path
             d={createArc(0, 35, secondsDegrees)}
-            fill={!isRunning ? "#dc2626" : "#ef4444"}
+            className={!isRunning ? "fill-red-600 dark:fill-red-400" : "fill-red-500 dark:fill-red-300"}
           />
         </svg>
       </div>
@@ -162,10 +162,10 @@ const AnalogTimer = () => {
             max="720"
             value={inputMinutes}
             onChange={(e) => setInputMinutes(Math.max(1, parseInt(e.target.value) || 1))}
-            className="w-16 px-2 py-1 border rounded text-center text-lg"
+            className="w-16 px-2 py-1 border rounded text-center text-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
             disabled={isRunning}
           />
-          <span className="text-gray-600 text-lg">分</span>
+          <span className="text-gray-600 dark:text-gray-300 text-lg">分</span>
         </div>
 
         <div className="flex space-x-3">
